@@ -16,13 +16,10 @@ function pivot(arr, start = 0, end = arr.length - 1) {
   for (let i = start + 1; i <= end; i++) {
     const currEl = arr[i];
     if (pivotEl > currEl) {
-      // incremenet pivot index variable
       swapIndex++;
-      // swap currEl with element at pivotIndex
       swap(arr, i, swapIndex);
     }
   }
-  // after iteration, swap starting element with pivot index (number of elements we've swapped)
   swap(arr, start, swapIndex);
   console.log(arr)
   return swapIndex;
