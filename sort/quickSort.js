@@ -33,16 +33,3 @@ function pivot(arr, start = 0, end = arr.length - 1) {
 }
 
 console.log(pivot([4, 8, 2, 1, 5, 7, 6, 3]))
-
-/*
-
-[5, 6, 4, 3]
-start = 0
-end = 2
-pivotIndex = 1
-pivotEl = 5
-i = 2
-currEl = 4
-
-
-*/
