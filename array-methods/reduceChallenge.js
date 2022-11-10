@@ -70,9 +70,11 @@ you can assume keys in all objects are unique
 try to do this as one reduce statement
 */
 
-// const testArr = [{a: 'hi', b: 'bye'}, {bla: 34}, {ohio: true, ny: "cheesecake"}];
+const testArr = [{a: 'hi', b: 'bye'}, {bla: 34}, {ohio: true, ny: "cheesecake"}];
+const badTest = 4;
 
-function reduceArrOfObjToSingleObj(arr) {
+function reduceObjects(arr) {
+  if (!Array.isArray(arr)) return null;
   return arr.reduce((acc, curr) => {
     for (const key in curr) {
       acc[key] = curr[key]
@@ -81,8 +83,8 @@ function reduceArrOfObjToSingleObj(arr) {
   }, {})
 }
 
-// console.log(reduceArrOfObjToSingleObj(testArr)); //{a: 'hi', b: 'bye', bla: 34, ohio: true, ny: "cheesecake"} 
-
+console.log(reduceObjects(testArr)); //{a: 'hi', b: 'bye', bla: 34, ohio: true, ny: "cheesecake"} 
+console.log(reduceObjects(badTest)); //null
 //----------------
 
 // write a function that takes in an array of numbers eg - [1,2,3]
