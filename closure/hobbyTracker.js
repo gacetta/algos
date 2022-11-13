@@ -8,20 +8,22 @@
 // when invoked - update cache.  add the hours to the corresponding property.
 // if no args, reset all values to 0, return 'tracker has been reset!'
 
-function hobbyTracker(arr) {
+function hobbyTracker(hobbies) {
   const cache = {};
-  arr.forEach((hobby) => {
+  hobbies.forEach((hobby) => {
     cache[hobby] = 0;
   })
 
   return (hobby, hours) => {
-    if (hobby === undefined) {
+    if (typeof hobby !== 'string') {
       for (const key in cache) {
         cache[key] = 0;
       }
       return 'tracker has been reset!'
+    } else if (typeof hours !== 'number' ) {
+      return '2 arguments of proper datatype required';
     } else {
-      cache[hobby] ? cache[hobby] += hours : cache[hobby] = hours;
+      cache[hobby] ? cache[hobby] += hours : cache[hobby] = hours;  //upsert key-value
       return cache;
     }
   }
