@@ -28,7 +28,7 @@ function uniteUnique(...args) {
   const Cache = new Map();
   args.forEach((array) => {
     array.forEach((element) => {
-        Cache.has(element) ? Cache.set(element, Cache.get(element) + 1) :Cache.set(element, 1);
+        Cache.has(element) ? Cache.set(element, Cache.get(element) + 1) : Cache.set(element, 1);
         console.log(Cache);
       });
     })
