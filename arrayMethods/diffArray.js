@@ -69,26 +69,50 @@ Note: You can return the array with its elements in any order.
 // }
 
 
-// REFACTOR: using cache object and creative typeof storage 
+// // REFACTOR: using cache object and creative typeof storage 
+// function diffArray(arr1, arr2) {
+//   // Build cache object to keep track of all seen elements
+//   // The first time an element is saved to the cache, its value is a string (`typeof`)
+//   // If an element is found a second time, its value is updated to the number 2
+//   const cache = {};
+//   arr1.forEach((element) => {
+//     cache[element] = cache[element] ? 2 : typeof element;
+//   })
+//   arr2.forEach((element) => {
+//     cache[element] = cache[element] ? 2 : typeof element;
+//   })
+
+//   // check cache for unique elements and push them to outputArr
+//   const outputArr = [];
+//   for(const property in cache) {
+//     if (typeof cache[property] === 'string') {
+//       const outputValue = cache[property] === 'number' ? Number(property) : property;
+//       outputArr.push(outputValue);
+//     }
+//   }
+//   return outputArr;
+// }
+
+// REFACTOR: using cache Map() to handle data type edge cases
 function diffArray(arr1, arr2) {
-  // Build cache object to keep track of all seen elements
-  // The first time an element is saved to the cache, its value is a string (`typeof`)
-  // If an element is found a second time, its value is updated to the number 2
-  const cache = {};
+
+  // Build cache Map() to keep count of all seen elements
+  const cache = new Map();
   arr1.forEach((element) => {
-    cache[element] = cache[element] ? 2 : typeof element;
+    const cacheValue = cache.has(element) ? cache.get(element) + 1 : 1;
+    cache.set(element, cacheValue);
   })
   arr2.forEach((element) => {
-    cache[element] = cache[element] ? 2 : typeof element;
+    const cacheValue = cache.has(element) ? cache.get(element) + 1 : 1;
+    cache.set(element, cacheValue);
   })
 
   // check cache for unique elements and push them to outputArr
   const outputArr = [];
-  for(const property in cache) {
-    if (typeof cache[property] === 'string') {
-      const outputValue = cache[property] === 'number' ? Number(property) : property;
-      outputArr.push(outputValue);
-    }
+  for(const [key, value] of cache) {
+    if (value === 1) {
+      outputArr.push(key);
+    } 
   }
   return outputArr;
 }
@@ -100,3 +124,5 @@ console.log(diffArray(["diorite", "andesite", "grass", "dirt", "dead shrub"],
                       ["diorite", "andesite", "grass", "dirt", "dead shrub"])) // [].
 console.log(diffArray(["diorite", "andesite", 4, "dirt", "dead shrub"], 
                       ["diorite", "andesite", 'grass', "dirt", "dead shrub"])) // [4, 'grass'].
+console.log(diffArray([1], ['1'])); // [1, '1']
+console.log(diffArray([1], ['1', 1])); // ['1']
