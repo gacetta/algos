@@ -12,3 +12,29 @@ then you must return the third object from the array (the first argument),
 because it contains the name and its value, that was passed on as the second argument.
 */
 
+function whatIsInAName(collection, source) {
+  const sourceKeys = Object.keys(source);
+  return collection.filter((obj) => {
+    // iterate over sourceKeys for each obj
+    console.log('new collection obj: ', obj)
+    console.log('source obj: ', source, '\n');
+    let foundMatch = true;
+    sourceKeys.forEach((sourceKey) => {
+      // console.log('collection obj: ', obj);
+      console.log('key: ', sourceKey);
+      console.log(`obj[${sourceKey}] :`, obj[sourceKey]);
+      console.log(`source[${sourceKey}] :`, source[sourceKey], '\n');
+      if (obj[sourceKey] !== source[sourceKey]) {
+        foundMatch = false;
+        console.log('not a match')
+      }
+      console.log('foundMatch: ', foundMatch, '\n')
+    })
+    return foundMatch;
+  })
+}
+
+// console.log(whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" })) // [{ first: "Tybalt", last: "Capulet" }]
+// console.log(whatIsInAName([{ "apple": 1 }, { "apple": 1 }, { "apple": 1, "bat": 2 }], { "apple": 1 })) // [{ "apple": 1 }, { "apple": 1 }, { "apple": 1, "bat": 2 }]
+// console.log(whatIsInAName([{"a": 1, "b": 2, "c": 3, "d": 9999}], {"a": 1, "b": 9999, "c": 3})) // []
+console.log(whatIsInAName([{ "apple": 1, "bat": 2 }, { "apple": 1 }, { "apple": 1, "bat": 2, "cookie": 2 }, { "bat":2 }], { "apple": 1, "bat": 2 })) // [{ "apple": 1, "bat": 2 }, { "apple": 1, "bat": 2, "cookie":2 }]
