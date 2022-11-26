@@ -40,7 +40,7 @@ function uniteUnique(...args) {
   const Cache = new Set();
   args.forEach((array) => {
     array.forEach((element) => Cache.add(element));
-    })
+  })
   return [...Cache.keys()];
 }
 
