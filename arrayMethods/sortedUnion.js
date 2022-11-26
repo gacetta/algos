@@ -11,8 +11,28 @@ array should not be sorted in numerical order.
 Check the assertion tests for examples.
 */
 
-function uniteUnique(arr) {
-  
+// function uniteUnique(arr) {
+//   // create Cache Map object to keep count of key/values
+//   const Cache = new Map();
+//     for (const array in arguments) {
+//       const currArr = arguments[array];
+//       currArr.forEach((element) => {
+//         Cache.has(element) ? Cache.set(element, Cache.get(element) + 1) :Cache.set(element, 1);
+//         console.log(Cache);
+//       })
+//     }
+//     return [...Cache.keys()];
+// }
+
+function uniteUnique(...args) {
+  const Cache = new Map();
+  args.forEach((array) => {
+    array.forEach((element) => {
+        Cache.has(element) ? Cache.set(element, Cache.get(element) + 1) :Cache.set(element, 1);
+        console.log(Cache);
+      });
+    })
+  return [...Cache.keys()];
 }
 
 console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1])) // [1, 3, 2, 5, 4].
