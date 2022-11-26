@@ -12,7 +12,19 @@ The character and its pair are paired up in an array, and all the arrays are gro
 */
 
 function pairElement(str) {
+  const gBlock = ["G", "C"];
+  const cBlock = ["C", "G"];
+  const aBlock = ["A", "T"];
+  const tBlock = ["T", "A"];
 
+  const outputArr = [];
+  for(const letter of str) {
+    if (letter === 'G') outputArr.push(gBlock)
+    if (letter === 'C') outputArr.push(cBlock)
+    if (letter === 'A') outputArr.push(aBlock)
+    if (letter === 'T') outputArr.push(tBlock)
+  }
+  return outputArr;
 }
 
 console.log(pairElement("GCG")) // [["G", "C"], ["C","G"], ["G", "C"]]
