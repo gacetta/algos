@@ -24,13 +24,22 @@ Check the assertion tests for examples.
 //     return [...Cache.keys()];
 // }
 
+// function uniteUnique(...args) {
+//   const Cache = new Map();
+//   args.forEach((array) => {
+//     array.forEach((element) => {
+//         Cache.has(element) ? Cache.set(element, Cache.get(element) + 1) : Cache.set(element, 1);
+//         console.log(Cache);
+//       });
+//     })
+//   return [...Cache.keys()];
+// }
+
+// Refactor Using Set()
 function uniteUnique(...args) {
-  const Cache = new Map();
+  const Cache = new Set();
   args.forEach((array) => {
-    array.forEach((element) => {
-        Cache.has(element) ? Cache.set(element, Cache.get(element) + 1) : Cache.set(element, 1);
-        console.log(Cache);
-      });
+    array.forEach((element) => Cache.add(element));
     })
   return [...Cache.keys()];
 }
