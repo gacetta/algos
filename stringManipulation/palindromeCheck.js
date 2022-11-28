@@ -12,11 +12,27 @@ We'll pass strings with varying formats, such as racecar, RaceCar, and race CAR 
 We'll also pass strings with special symbols, such as 2A3*3a2, 2A3 3a2, and 2_A3*3#A2.
 */
 
+// input: str
+// output: boolean
+
 function palindrome(str) {
+  const regex = /[^a-zA-Z\d]/ig;
+  const cleanStrArr = str.replaceAll(regex, '').toLowerCase().split('');
+  const length = cleanStrArr.length;
+  const mid = length % 2 === 0 ? (length / 2) - 1 : Math.floor(length / 2);
+  
+  // iterate from beginning and end to meet in the middle
+  for (let i = 0; i <= mid; i++) {
+    const startPoint = i;
+    const endPoint = length - 1 - i;
+    // console.log('start: ', cleanStrArr[startPoint])
+    // console.log('end: ', cleanStrArr[endPoint])
+    if (cleanStrArr[startPoint] !== cleanStrArr[endPoint]) return false;
+  }
   return true;
 }
 
-console.log(palindrome("eye")) // true.
+console.log(palindrome('eye')) // true.
 console.log(palindrome("_eye")) // true.
 console.log(palindrome("race car")) // true.
 console.log(palindrome("not a palindrome")) // false.
