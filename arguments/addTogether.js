@@ -11,6 +11,20 @@ sumTwoAnd(3) returns 5.
 If either argument isn't a valid number, return undefined.
 */
 
+function addTogether() {
+  for (const arg of arguments) {
+    if (typeof arg !== 'number') return undefined;
+  }
+  if (arguments.length === 1) {
+    const firstArg = arguments[0]
+    return (num) => {
+      if (typeof num !== 'number') return undefined;
+      return num + firstArg;
+    }
+  } else {
+    return arguments[0] + arguments[1];
+  }
+}
 
 console.log(addTogether(2, 3)) // 5.
 console.log(addTogether(23, 30)) // 53.
