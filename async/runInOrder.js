@@ -47,7 +47,7 @@ function runInOrder(funcArr, waitArr) {
   let waitTime = 0;
   funcArr.forEach((callback, index) => {
     waitTime += waitArr[index];
-    setTimeout(() => callback, waitTime)
+    setTimeout((() => callback()), waitTime)
   })
 }
 
