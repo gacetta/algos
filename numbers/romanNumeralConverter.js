@@ -17,10 +17,26 @@ IV	4
 I	1
 All roman numerals answers should be provided in upper-case.
 
+1-3: base
+4-8: mid (next symbol)
+9-0: top (which then becomes new base)
+
 */
 
 function convertToRoman(num) {
-  return num;
+  const converter = {
+    1: 'I',
+    4: 'IV',
+    5: 'V',
+    9: 'IX',
+    10: 'X'
+  }
+
+  check if (num/1000 > 1) {
+          Math.floor(num/1000) = 3
+          5 % 1000 === new number
+
+
  }
  
 
